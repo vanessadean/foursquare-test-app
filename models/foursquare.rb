@@ -30,8 +30,8 @@ class Neighborhood
       @recommended_venues << Restaurant.new(name,phone,address,website)
       # @recommended_venues << item["venue"]["name"]
     end
-    # puts encoded # uncomment this to see the uri that is being used in the HTTP get request
     @recommended_venues
+    # puts encoded # uncomment this to see the uri that is being used in the HTTP get request
   end
 
   # Example groups to search by include ["outdoor seating","credit cards","price","reservations","dining options","street parking","wheelchair accessible" ]
