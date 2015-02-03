@@ -11,12 +11,13 @@ class MyApp < Sinatra::Base
   get '/eastvillage' do
     hood = Neighborhood.new("East Village, New York, NY")
     @recommendations = hood.get_recommended_venues
-    erb :eastvillage
+    erb :results
   end
 
   post '/results' do
     hood = Neighborhood.new(params[:location])
     @recommendations = hood.get_recommended_venues
+    erb :results
   end
 
 end

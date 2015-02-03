@@ -23,12 +23,12 @@ class Neighborhood
     encoded = URI.parse(URI.encode(uri)) # to handle spaces in the location
     @api_response = HTTParty.get(encoded)
     @api_response['response']['groups'][0]["items"].each do |item|
-      # name = item["venue"]["name"]
-      # phone = item["venue"]["contact"]["formattedPhone"]
-      # address = item["venue"]["location"]["address"]
-      # website = item["venue"]["url"] 
-      #       @recommended_venues << item["venue"]["name"]
-      @recommended_venues << item["venue"]["name"]
+      name = item["venue"]["name"]
+      phone = item["venue"]["contact"]["formattedPhone"]
+      address = item["venue"]["location"]["address"]
+      website = item["venue"]["url"] 
+      @recommended_venues << Restaurant.new(name,phone,address,website)
+      # @recommended_venues << item["venue"]["name"]
     end
     # puts encoded # uncomment this to see the uri that is being used in the HTTP get request
     @recommended_venues
