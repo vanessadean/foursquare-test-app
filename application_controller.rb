@@ -11,15 +11,17 @@ class ApplicationController < Sinatra::Base
   get '/eastvillage' do
     hood = Neighborhood.new("East Village, New York, NY")
     hood.get_recommended_venues
-    @recommendations = hood.recommended_venues
-    erb :results
+    hood.filter_by_group("Outdoor Seating")
+    @recommendations = hood.venues_by_group
+    erb :eastvillage
   end
 
   post '/results' do
     @neighborhood = params[:location]
     hood = Neighborhood.new(params[:location])
     hood.get_recommended_venues
-    @recommendations = hood.recommended_venues
+    hood.filter_by_group("Outdoor Seating")
+    @recommendations = hood.venues_by_group
     erb :results
   end
 

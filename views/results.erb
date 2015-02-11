@@ -1,12 +1,9 @@
-<h3>Here are some restaurant recommendations for <%= @neighborhood %>.</h3>
+<h3>Here are some recommendations for restaurants with outdoor seating in <%= @neighborhood %>.</h3>
 <br>
 
 <% @recommendations.each do |rec| %>
-  <p><strong><%= rec.name %></strong></p>
-  <p><%= rec.phone %></p>
-  <p><%= rec.website %></p>
-  <p><%= rec.address %></p>
+  <h4><%= rec %></h4>
   <br>
 <% end %>
 
-<h3><a href="/">Home</a></h3>
+

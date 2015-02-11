@@ -17,17 +17,18 @@ class Neighborhood
 
   # This user the Foursquare explore endpoint to pull recommended food venues for a location
   def get_recommended_venues
-    uri = "https://api.foursquare.com/v2/venues/explore?near=#{@location}&client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&v=#{Time.now.strftime("%Y%m%d")}&categoryId=4d4b7105d754a06374d81259"
+    uri = "https://api.foursquare.com/v2/venues/explore?near=#{@location}&client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&v=#{Time.now.strftime("%Y%m%d")}&categoryId=4d4b7105d754a06374d81259&limit=10"
     encoded = URI.parse(URI.encode(uri)) # to handle spaces in the location
     @api_response = HTTParty.get(encoded)
     @api_response['response']['groups'][0]["items"].each do |item|
-      venue = Restaurant.new
-      venue.name = item["venue"]["name"]
-      venue.phone = item["venue"]["contact"]["formattedPhone"]
-      venue.address = item["venue"]["location"]["address"]
-      venue.website = item["venue"]["url"] 
-      @recommended_venues << venue
+      # venue = Restaurant.new
+      # venue.name = item["venue"]["name"]
+      # venue.phone = item["venue"]["contact"]["formattedPhone"]
+      # venue.address = item["venue"]["location"]["address"]
+      # venue.website = item["venue"]["url"] 
+      # @recommended_venues << venue
       # @recommended_venues << item["venue"]["name"]
+      @recommended_venues << item["venue"]
     end
     # puts encoded # uncomment this to see the uri that is being used in the HTTP get request
     @recommended_venues
