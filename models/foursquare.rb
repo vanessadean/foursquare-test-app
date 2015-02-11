@@ -4,8 +4,8 @@ class Neighborhood
   attr_accessor :location, :recommended_venues, :venue_ids, :venues_for_search, :venues_by_group, :api_response
   
   ##!!!NEEDS TO BE FILLED OUT WITH CLIENT ID AND SECRET PROVIDED BY FOURSQUARE
-  # CLIENT_ID = ""
-  # CLIENT_SECRET = ""
+  CLIENT_ID = ENV['CLIENT_ID']
+  CLIENT_SECRET = ENV['CLIENT_SECRET']
 
   def initialize(location)
     @location = location
