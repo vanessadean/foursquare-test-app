@@ -1,3 +1,6 @@
+<h3>Here are some restaurant recommendations for <%= @neighborhood %>.</h3>
+<br>
+
 <% @recommendations.each do |rec| %>
   <p><strong><%= rec.name %></strong></p>
   <p><%= rec.phone %></p>
@@ -6,3 +9,4 @@
   <br>
 <% end %>
 
+<h3><a href="/">Home</a></h3>

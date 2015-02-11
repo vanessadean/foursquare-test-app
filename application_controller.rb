@@ -1,8 +1,8 @@
 require 'bundler'
 Bundler.require
-require './models/foursquare'
+require './models/foursquare.rb'
 
-class MyApp < Sinatra::Base
+class ApplicationController < Sinatra::Base
 
   get '/' do
     erb :index
@@ -10,13 +10,16 @@ class MyApp < Sinatra::Base
 
   get '/eastvillage' do
     hood = Neighborhood.new("East Village, New York, NY")
-    @recommendations = hood.get_recommended_venues
+    hood.get_recommended_venues
+    @recommendations = hood.recommended_venues
     erb :results
   end
 
   post '/results' do
+    @neighborhood = params[:location]
     hood = Neighborhood.new(params[:location])
-    @recommendations = hood.get_recommended_venues
+    hood.get_recommended_venues
+    @recommendations = hood.recommended_venues
     erb :results
   end
 
