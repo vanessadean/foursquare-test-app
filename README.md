@@ -1,12 +1,11 @@
 ---
-tags: kids, mvc
+tags: kids, mvc, APIS
 languages: ruby
-type: interactive practice
+type: sample app
 ---
 
-##Sinatra Template
+## Foursquare Mini
 
-Fork and clone this repository to use as a template for your final project.
-
+This is a sample MVP for the Foursquare API course.
 
 

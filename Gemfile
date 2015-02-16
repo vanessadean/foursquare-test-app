@@ -6,4 +6,5 @@ gem 'pry'
 gem 'sinatra'
 gem 'nokogiri'
 gem 'httparty'
+gem 'dotenv'
 
