@@ -16,12 +16,12 @@ class ApplicationController < Sinatra::Base
     erb :eastvillage
   end
 
-  get '/soho' do
-    hood = Neighborhood.new("Soho, New York, NY")
+  get '/ues' do
+    hood = Neighborhood.new("Upper East Side, New York, NY")
     hood.get_recommended_venues
     hood.filter_by_group("Outdoor Seating")
     @recommendations = hood.venues_by_group
-    erb :soho
+    erb :ues
   end
 
   get '/williamsburg' do
