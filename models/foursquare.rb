@@ -22,13 +22,6 @@ class Neighborhood
     encoded = URI.parse(URI.encode(uri)) # to handle spaces in the location
     @api_response = HTTParty.get(encoded)
     @api_response['response']['groups'][0]["items"].each do |item|
-      # venue = Restaurant.new
-      # venue.name = item["venue"]["name"]
-      # venue.id = item["venue"]["id"]
-      # venue.phone = item["venue"]["contact"]["formattedPhone"]
-      # venue.address = item["venue"]["location"]["address"]
-      # venue.website = item["venue"]["url"]
-      # @recommended_venues << venue
       @recommended_venues << item["venue"]
     end
     @recommended_venues
@@ -43,7 +36,14 @@ class Neighborhood
         if groups["name"].downcase == group.downcase
           groups["items"].each do |item|
             if item["displayValue"].split(" ").first != "No"
-              @venues_by_group << venue["name"]
+              restaurant = Restaurant.new
+              restaurant.name = venue["name"]
+              restaurant.phone = venue["contact"]["formattedPhone"]
+              restaurant.address = venue["location"]["address"]
+              restaurant.website = venue["url"]
+              @venues_by_group << restaurant
+              puts @venues_by_group
+              # @venues_by_group << venue["name"]
             end
           end
         end

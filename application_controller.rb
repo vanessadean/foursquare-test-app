@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.require
 require './models/foursquare.rb'
+require './models/restaurant.rb'
 
 class ApplicationController < Sinatra::Base
 
@@ -9,27 +10,30 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/eastvillage' do
+    @neighborhood = "East Village"
     hood = Neighborhood.new("East Village, New York, NY")
     hood.get_recommended_venues
     hood.filter_by_group("Outdoor Seating")
     @recommendations = hood.venues_by_group
-    erb :eastvillage
+    erb :results
   end
 
-  get '/ues' do
-    hood = Neighborhood.new("Upper East Side, New York, NY")
+  get '/astoria' do
+    @neighborhood = "Astoria"
+    hood = Neighborhood.new("Astoria, Queens, NY")
     hood.get_recommended_venues
     hood.filter_by_group("Outdoor Seating")
     @recommendations = hood.venues_by_group
-    erb :ues
+    erb :results
   end
 
   get '/williamsburg' do
+    @neighborhood = "Williamsburg"
     hood = Neighborhood.new("Williamsburg, Brooklyn, NY")
     hood.get_recommended_venues
     hood.filter_by_group("Outdoor Seating")
     @recommendations = hood.venues_by_group
-    erb :williamsburg
+    erb :results
   end
 
   post '/results' do
